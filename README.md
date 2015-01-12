@@ -11,8 +11,8 @@ git clone https://github.com/ElliotPenson/.emacs.d.git
 
 By default, emacs will look for the .emacs configuration file in your root
 directory. Use a symlink to make a .emacs alias which will point to the actual
-config file in .emacs.d:
+emacs.el file in .emacs.d:
 
 ```
-ln -s ~/.emacs.d/emacs ~/.emacs
+ln -s ~/.emacs.d/emacs.el ~/.emacs
 ```
