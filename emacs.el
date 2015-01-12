@@ -22,7 +22,7 @@
 (package-initialize)
 
 ;;; SLIME
-(setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
 (setq slime-contribs '(slime-fancy))
 
 ;(setq find-file-visit-truename t)
