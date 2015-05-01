@@ -4,15 +4,24 @@
 ;;; Interface
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq inhibit-startup-message t)
-
 ;;; Themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'base16-default t)
+(load-theme (if window-system
+                'base16-railscasts
+              'base16-default)
+            t)
 
 ;;; Line Numbers
 (global-linum-mode t)
 (setq linum-format "%d ")
+
+(setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(when (eq system-type 'windows-nt)
+  (set-face-attribute 'default nil :font "Fixedsys")
+  (set-frame-font "Fixedsys" nil t)
+  (setq default-directory "C:/Users/epenson/Documents/"))
 
 ;;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -59,3 +68,9 @@
   (define-key slime-repl-mode-map
     (red-kdb-macro paredit-backward-delete-key) nil))
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
+
+;;; Misc Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq user-full-name "Elliot Penson"
+      user-mail-address "elliotpenson@gmail.com")
