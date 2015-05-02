@@ -43,6 +43,7 @@
 
 (defvar my-packages '(better-defaults
                       paredit
+                      ace-jump-mode
                       projectile
                       clojure-mode
                       cider))
@@ -77,6 +78,9 @@
   (define-key slime-repl-mode-map
     (red-kdb-macro paredit-backward-delete-key) nil))
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
+
+;;; Ace Jump Mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;;; Misc Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
