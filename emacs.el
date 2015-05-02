@@ -23,6 +23,11 @@
   (set-frame-font "Fixedsys" nil t)
   (setq default-directory "C:/Users/epenson/Documents/"))
 
+(setq mac-command-modifier 'meta)
+
+(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(width . 83))
+
 ;;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -36,7 +41,11 @@
 
 (package-initialize)
 
-(defvar my-packages '(better-defaults paredit projectile clojure-mode cider))
+(defvar my-packages '(better-defaults
+                      paredit
+                      projectile
+                      clojure-mode
+                      cider))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
