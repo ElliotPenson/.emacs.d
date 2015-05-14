@@ -23,7 +23,9 @@
   (set-frame-font "Fixedsys" nil t)
   (setq default-directory "C:/Users/epenson/Documents/"))
 
-(setq mac-command-modifier 'meta)
+(if (eq system-type 'darwin)
+    (setq mac-command-modifier 'meta)
+  (setq w32-lwindow-modifier 'meta))
 
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 83))
