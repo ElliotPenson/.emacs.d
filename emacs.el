@@ -66,6 +66,8 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+(setq fill-column 80)
+(setq org-mode-hook 'turn-on-auto-fill)
 
 ;;; Paredit
 (autoload 'enable-paredit-mode "paredit"
