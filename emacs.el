@@ -30,6 +30,9 @@
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 83))
 
+(push (cons "\\.cl$" 'lisp-mode)
+      auto-mode-alist)
+
 ;;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
