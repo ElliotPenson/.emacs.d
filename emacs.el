@@ -51,6 +51,7 @@
                       ace-jump-mode
                       projectile
                       clojure-mode
+                      swift-mode
                       slime
                       cider))
 
