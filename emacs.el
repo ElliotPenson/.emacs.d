@@ -6,7 +6,7 @@
 
 ;;; Themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme (if window-system
+(load-theme (if (display-graphic-p)
                 'base16-railscasts
               'base16-default)
             t)
