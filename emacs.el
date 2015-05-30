@@ -51,6 +51,7 @@
                       ace-jump-mode
                       projectile
                       clojure-mode
+                      slime
                       cider))
 
 (dolist (package my-packages)
@@ -87,6 +88,7 @@
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
 
 ;;; Ace Jump Mode
+(require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;;; Misc Settings
