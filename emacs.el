@@ -85,7 +85,7 @@
 (add-hook 'slime-repl-mode-hood (lambda () (paredit-mode +1)))
 (defun override-slime-repl-bindings-with-paredit ()
   (define-key slime-repl-mode-map
-    (red-kdb-macro paredit-backward-delete-key) nil))
+    (read-kbd-macro paredit-backward-delete-key) nil))
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
 
 ;;; Ace Jump Mode
