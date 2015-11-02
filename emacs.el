@@ -5,11 +5,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme (if (display-graphic-p)
-                'base16-railscasts
-              'base16-default)
-            t)
+(cond ((>= emacs-major-version 24)
+       (add-to-list 'custom-theme-load-path
+                    "~/.emacs.d/themes")
+       (load-theme (if (display-graphic-p)
+                       'base16-railscasts
+                     'base16-default)
+                   t))
+      (t ;; (< emacs-major-version 24)
+       (load-file "~/.emacs.d/themes/base16-railscasts-theme.el")))
 
 ;;; Line Numbers
 (global-linum-mode t)
