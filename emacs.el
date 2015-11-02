@@ -66,7 +66,12 @@
     (package-install package)))
 
 ;;; SLIME
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program
+      (cond ((file-exists-p "/usr/bin/sbcl")
+             "/usr/bin/sbcl")
+            ((file-exists-p "/usr/local/bin/sbcl")
+             "/usr/bin/local/sbcl")
+            (t (error "Cannot find SBCL!"))))
 (setq slime-contribs '(slime-fancy))
 
 ;;; Org-Mode
