@@ -60,7 +60,8 @@
                       clojure-mode
                       swift-mode
                       slime
-                      cider))
+                      cider
+                      python-mode))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -104,6 +105,14 @@
 ;;; Ace Jump Mode
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Python
+(require 'python-mode)
+(setq-default py-shell-name "ipython")
+(setq-default py-which-bufname "IPython")
+(setq py-force-py-shell-name-p t)
+; don't split windows
+(setq py-keep-windows-configuration t)
 
 ;; Misc Settings -----------------------------------------------------
 
