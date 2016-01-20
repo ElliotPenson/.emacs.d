@@ -114,6 +114,21 @@
 ; don't split windows
 (setq py-keep-windows-configuration t)
 
+;; Spellchecking
+(setq ispell-program-name
+      "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+(dolist (hook '(text-mode-hook
+                org-mode-hook))
+  ;; Spell check entire file
+  (add-hook hook (lambda () (flyspell-mode 1))))
+(dolist (hook '(emacs-lisp-mode-hook
+                inferior-lisp-mode-hook
+                lisp-mode-hook
+                python-mode-hook))
+  ;; Spell check comments and strings
+  (add-hook hook (lambda () (flyspell-prog-mode))))
+(global-set-key (kbd "<f8>") 'ispell-word)
+
 ;; Misc Settings -----------------------------------------------------
 
 (setq user-full-name "Elliot Penson"
