@@ -55,7 +55,7 @@
 
 (defvar my-packages '(better-defaults
                       paredit
-                      ace-jump-mode
+                      avy
                       projectile
                       clojure-mode
                       swift-mode
@@ -102,9 +102,9 @@
     (read-kbd-macro paredit-backward-delete-key) nil))
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
 
-;;; Ace Jump Mode
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; Avy
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
 
 ;; Python
 (require 'python-mode)
