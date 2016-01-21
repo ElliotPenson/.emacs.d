@@ -114,7 +114,7 @@
 ; don't split windows
 (setq py-keep-windows-configuration t)
 
-;; Spellchecking
+;; Spell checking
 (setq ispell-program-name
       "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
 (dolist (hook '(text-mode-hook
@@ -133,6 +133,8 @@
 
 (setq user-full-name "Elliot Penson"
       user-mail-address "elliotpenson@gmail.com")
+
+(setq visible-bell nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; emacs.el ends here
