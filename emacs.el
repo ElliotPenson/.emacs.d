@@ -54,6 +54,7 @@
 (package-initialize)
 
 (defvar my-packages '(better-defaults
+                      markdown-mode
                       paredit
                       avy
                       projectile
