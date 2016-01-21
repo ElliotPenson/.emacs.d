@@ -135,6 +135,13 @@
 (setq user-full-name "Elliot Penson"
       user-mail-address "elliotpenson@gmail.com")
 
+(defun increment-number-at-point ()
+  (interactive)
+  (skip-chars-backward "0123456789")
+  (or (looking-at "[0123456789]+")
+      (error "No number at point"))
+  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
 (setq visible-bell nil)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
