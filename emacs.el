@@ -33,8 +33,8 @@
     (setq mac-command-modifier 'meta)
   (setq w32-lwindow-modifier 'meta))
 
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(width . 83))
+(add-to-list 'default-frame-alist '(height . 55))
+(add-to-list 'default-frame-alist '(width . 88))
 
 (setq fill-column 80)
 
@@ -62,7 +62,8 @@
                       swift-mode
                       slime
                       cider
-                      python-mode))
+                      python-mode
+                      exec-path-from-shell))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -109,6 +110,7 @@
 
 ;; Python
 (require 'python-mode)
+(exec-path-from-shell-initialize)
 (setq-default py-shell-name "ipython")
 (setq-default py-which-bufname "IPython")
 (setq py-force-py-shell-name-p t)
