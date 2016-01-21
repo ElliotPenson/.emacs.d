@@ -53,30 +53,25 @@
 
 (package-initialize)
 
-(defvar my-packages '(better-defaults
-                      markdown-mode
-                      paredit
-                      avy
-                      projectile
-                      clojure-mode
-                      swift-mode
-                      slime
-                      cider
-                      python-mode
-                      exec-path-from-shell))
+(defvar my-packages
+  '(better-defaults
+    projectile
+    exec-path-from-shell
+    ;; editor modes
+    markdown-mode
+    clojure-mode
+    swift-mode
+    python-mode
+    ;; environments
+    slime
+    cider
+    paredit
+    ;; movement
+    avy))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
-
-;; SLIME
-(setq inferior-lisp-program
-      (cond ((file-exists-p "/usr/bin/sbcl")
-             "/usr/bin/sbcl")
-            ((file-exists-p "/usr/local/bin/sbcl")
-             "/usr/bin/local/sbcl")
-            (t (error "Cannot find SBCL!"))))
-(setq slime-contribs '(slime-fancy))
 
 ;; Org-Mode
 (require 'org)
@@ -86,6 +81,39 @@
 (setq org-log-done t)
 (setq org-src-fontify-natively t) ; turn on syntax highlighting
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+;; Spell checking
+(setq ispell-program-name
+      "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+(dolist (hook '(text-mode-hook
+                org-mode-hook))
+  ;; Spell check entire file
+  (add-hook hook (lambda () (flyspell-mode 1))))
+(dolist (hook '(emacs-lisp-mode-hook
+                inferior-lisp-mode-hook
+                lisp-mode-hook
+                python-mode-hook))
+  ;; Spell check comments and strings
+  (add-hook hook (lambda () (flyspell-prog-mode))))
+(global-set-key (kbd "<f8>") 'ispell-word)
+
+;; Python
+(require 'python-mode)
+(exec-path-from-shell-initialize)
+(setq-default py-shell-name "ipython")
+(setq-default py-which-bufname "IPython")
+(setq py-force-py-shell-name-p t)
+; don't split windows
+(setq py-keep-windows-configuration t)
+
+;; SLIME
+(setq inferior-lisp-program
+      (cond ((file-exists-p "/usr/bin/sbcl")
+             "/usr/bin/sbcl")
+            ((file-exists-p "/usr/local/bin/sbcl")
+             "/usr/bin/local/sbcl")
+            (t (error "Cannot find SBCL!"))))
+(setq slime-contribs '(slime-fancy))
 
 ;; Paredit
 (autoload 'enable-paredit-mode "paredit"
@@ -107,30 +135,6 @@
 ;; Avy
 (global-set-key (kbd "C-:") 'avy-goto-char)
 (global-set-key (kbd "C-'") 'avy-goto-char-2)
-
-;; Python
-(require 'python-mode)
-(exec-path-from-shell-initialize)
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
-(setq py-force-py-shell-name-p t)
-; don't split windows
-(setq py-keep-windows-configuration t)
-
-;; Spell checking
-(setq ispell-program-name
-      "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
-(dolist (hook '(text-mode-hook
-                org-mode-hook))
-  ;; Spell check entire file
-  (add-hook hook (lambda () (flyspell-mode 1))))
-(dolist (hook '(emacs-lisp-mode-hook
-                inferior-lisp-mode-hook
-                lisp-mode-hook
-                python-mode-hook))
-  ;; Spell check comments and strings
-  (add-hook hook (lambda () (flyspell-prog-mode))))
-(global-set-key (kbd "<f8>") 'ispell-word)
 
 ;; Misc Settings -----------------------------------------------------
 
