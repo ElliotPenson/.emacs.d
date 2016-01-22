@@ -58,6 +58,7 @@
   '(better-defaults
     projectile
     exec-path-from-shell
+    ox-twbs
     ;; editor modes
     markdown-mode
     clojure-mode
