@@ -154,5 +154,7 @@
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
+(global-set-key (kbd "C-x g") 'webjump)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; emacs.el ends here
