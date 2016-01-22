@@ -29,15 +29,35 @@
   (set-frame-font "Fixedsys" nil t)
   (setq default-directory "C:/Users/epenson/Documents/"))
 
+(add-to-list 'default-frame-alist '(height . 55))
+(add-to-list 'default-frame-alist '(width . 88))
+
+(setq visible-bell nil)
+
+;; Keys/Navigation  --------------------------------------------------
+
 (cond ((eq system-type 'darwin)
        (setq mac-command-modifier 'meta)
        (setq mac-option-modifier 'super))
       (t (setq w32-lwindow-modifier 'meta)))
 
-(add-to-list 'default-frame-alist '(height . 55))
-(add-to-list 'default-frame-alist '(width . 88))
+;; Editing -----------------------------------------------------------
 
 (setq fill-column 80)
+
+(define-coding-system-alias 'UTF-8 'utf-8)
+
+(global-set-key (kbd "M-j")
+                (lambda ()
+                  (interactive)
+                  (join-line -1)))
+
+(defun increment-number-at-point ()
+  (interactive)
+  (skip-chars-backward "0123456789")
+  (or (looking-at "[0123456789]+")
+      (error "No number at point"))
+  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 
 (push (cons "\\.cl$" 'lisp-mode)
       auto-mode-alist)
@@ -47,23 +67,7 @@
 (setq user-full-name "Elliot Penson"
       user-mail-address "elliotpenson@gmail.com")
 
-(defun increment-number-at-point ()
-  (interactive)
-  (skip-chars-backward "0123456789")
-  (or (looking-at "[0123456789]+")
-      (error "No number at point"))
-  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
-
-(setq visible-bell nil)
-
-(define-coding-system-alias 'UTF-8 'utf-8)
-
 (global-set-key (kbd "C-x g") 'webjump)
-
-(global-set-key (kbd "M-j")
-                (lambda ()
-                  (interactive)
-                  (join-line -1)))
 
 ;; Other Configuration Files -----------------------------------------
 
