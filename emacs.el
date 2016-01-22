@@ -134,8 +134,8 @@
 (add-hook 'slime-repl-mode-hook #'override-slime-repl-bindings-with-paredit)
 
 ;; Avy
-(global-set-key (kbd "C-:") 'avy-goto-char)
-(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(global-set-key (kbd "C-'") 'avy-goto-char)
+(global-set-key (kbd "C-:") 'avy-goto-char-2)
 
 ;; Misc Settings -----------------------------------------------------
 
