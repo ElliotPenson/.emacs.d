@@ -62,6 +62,27 @@
          :section-numbers nil
          :with-sub-superscript nil)))
 
+(defun my-org-publish-buffer ()
+  "Export the current buffer's file and open in browser. Function taken from
+   the ox-twbs manual (https://github.com/mars mining/ox-twbs)."
+  (interactive)
+  (save-buffer)
+  (save-excursion (org-publish-current-file))
+  (let* ((proj (org-publish-get-project-from-filename buffer-file-name))
+         (proj-plist (cdr proj))
+         (rel (file-relative-name buffer-file-name
+                                  (plist-get proj-plist :base-directory)))
+         (dest (plist-get proj-plist :publishing-directory)))
+    (browse-url (concat "file://"
+                        (file-name-as-directory (expand-file-name dest))
+                        (file-name-sans-extension rel)
+                        ".html"))))
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (local-set-key (kbd "s-\\")
+                           'my-org-publish-buffer)))
+
 ;; Spell Checking  ---------------------------------------------------
 
 (setq ispell-program-name
