@@ -54,6 +54,14 @@
 
 (add-hook 'org-mode-hook 'turn-on-auto-fill) ; word wrap
 
+(setq org-publish-project-alist
+      '(("org"
+         :base-directory "~/org/"
+         :publishing-directory "~/org/public_html/"
+         :publishing-function org-twbs-publish-to-html
+         :section-numbers nil
+         :with-sub-superscript nil)))
+
 ;; Spell Checking  ---------------------------------------------------
 
 (setq ispell-program-name
