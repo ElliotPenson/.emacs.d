@@ -59,7 +59,7 @@
          :base-directory "~/org/"
          :publishing-directory "~/org/public_html/"
          :publishing-function org-twbs-publish-to-html
-         :section-numbers nil
+         :with-headline-numbers nil
          :with-sub-superscript nil)))
 
 (defun my-org-publish-buffer ()
