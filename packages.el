@@ -32,6 +32,7 @@
     slime
     cider
     paredit
+    flycheck
     ;; movement
     avy))
 
@@ -149,6 +150,10 @@
 
 (add-hook 'slime-repl-mode-hook
           #'override-slime-repl-bindings-with-paredit)
+
+;; Flycheck ----------------------------------------------------------
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Avy ---------------------------------------------------------------
 
