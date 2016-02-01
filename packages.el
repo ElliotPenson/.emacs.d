@@ -23,6 +23,7 @@
     projectile
     exec-path-from-shell
     ox-twbs
+    yasnippet
     ;; editor modes
     markdown-mode
     clojure-mode
@@ -83,6 +84,13 @@
           (lambda ()
             (local-set-key (kbd "s-\\")
                            'my-org-publish-buffer)))
+
+;; YASnippet  --------------------------------------------------------
+
+(add-to-list 'load-path
+              "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;; Spell Checking  ---------------------------------------------------
 
