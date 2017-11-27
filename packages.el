@@ -28,6 +28,7 @@
     clojure-mode
     swift-mode
     python-mode
+    scss-mode
     ;; environments
     slime
     cider
