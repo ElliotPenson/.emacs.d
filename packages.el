@@ -24,11 +24,12 @@
     exec-path-from-shell
     ox-twbs
     ;; editor modes
-    markdown-mode
     clojure-mode
-    swift-mode
+    go-mode
+    markdown-mode
     python-mode
     scss-mode
+    swift-mode
     ;; environments
     slime
     cider
@@ -160,6 +161,16 @@
 
 (global-set-key (kbd "C-'") 'avy-goto-char)
 (global-set-key (kbd "C-:") 'avy-goto-char-2)
+
+;; Go ----------------------------------------------------------------
+
+;; PRECONDITION: goflymake is installed (go get -u github.com/dougm/goflymake)
+
+(let ((go-path "~/go/"))
+  (add-to-list 'load-path (concat go-path "src/github.com/dougm/goflymake")))
+
+(require 'go-flymake)
+(require 'go-flycheck)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
