@@ -31,6 +31,7 @@
     python-mode
     scss-mode
     swift-mode
+    web-mode
     ;; environments
     slime
     cider
@@ -179,6 +180,11 @@
 
 (require 'go-flymake)
 (require 'go-flycheck)
+
+;; web-mode ----------------------------------------------------------
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
