@@ -176,10 +176,14 @@
 
 ;; Go ----------------------------------------------------------------
 
-;; PRECONDITION: goflymake is installed (go get -u github.com/dougm/goflymake)
-
-(let ((go-path "~/go/"))
-  (add-to-list 'load-path (concat go-path "src/github.com/dougm/goflymake")))
+(let*
+    ((go-path "~/go/")
+     (goflymake-package "github.com/dougm/goflymake")
+     (goflymake-path (concat go-path "src/" goflymake-package)))
+  (if (file-directory-p goflymake-path)
+      (add-to-list 'load-path goflymake-path)
+    (error (format "goflymake is not installed. Please run `go get -u %s`."
+                   goflymake-package))))
 
 (require 'go-flymake)
 (require 'go-flycheck)
