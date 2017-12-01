@@ -62,6 +62,7 @@
 (setq org-publish-project-alist
       '(("org"
          :base-directory "~/org/"
+         :base-extension "../"
          :publishing-directory "~/org/public_html/"
          :publishing-function org-twbs-publish-to-html
          :with-headline-numbers nil
