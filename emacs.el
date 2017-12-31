@@ -17,9 +17,8 @@
       (t ;; (< emacs-major-version 24)
        (load-file "~/.emacs.d/themes/base16-railscasts-theme.el")))
 
-;; Line Numbers
-(global-linum-mode t)
-(setq linum-format "%d ")
+;; Display the current column
+(setq column-number-mode t)
 
 (setq inhibit-startup-message t)
 (fset 'yes-or-no-p 'y-or-n-p)
