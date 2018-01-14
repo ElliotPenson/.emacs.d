@@ -42,7 +42,7 @@
 
 ;; Editing -----------------------------------------------------------
 
-(setq fill-column 80)
+(setq-default fill-column 80)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
