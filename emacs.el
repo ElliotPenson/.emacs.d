@@ -31,6 +31,8 @@
 (add-to-list 'default-frame-alist '(height . 55))
 (add-to-list 'default-frame-alist '(width . 88))
 
+(setq confirm-kill-emacs 'y-or-n-p)
+
 (setq visible-bell nil)
 
 ;; Keys/Navigation  --------------------------------------------------
