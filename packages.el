@@ -174,6 +174,12 @@
 ;; Avy ---------------------------------------------------------------
 
 (global-set-key (kbd "C-'") 'avy-goto-char)
+
+;; Unset conflicting binding in Org mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (local-unset-key (kbd "C-'"))))
+
 (global-set-key (kbd "C-:") 'avy-goto-char-2)
 
 ;; Go ----------------------------------------------------------------
