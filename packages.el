@@ -24,6 +24,7 @@
     exec-path-from-shell
     ox-twbs
     yasnippet
+    spaceline
     ;; editor modes
     clojure-mode
     go-mode
@@ -192,6 +193,11 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+;; spaceline ---------------------------------------------------------
+
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
