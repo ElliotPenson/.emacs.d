@@ -28,6 +28,7 @@
     ;; editor modes
     clojure-mode
     go-mode
+    js2-mode
     markdown-mode
     python-mode
     scss-mode
@@ -198,6 +199,10 @@
 
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
+
+;; js2-mode ----------------------------------------------------------
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
