@@ -34,6 +34,7 @@
     scss-mode
     swift-mode
     web-mode
+    whitespace-cleanup-mode
     ;; environments
     slime
     cider
@@ -209,6 +210,10 @@
 ;; js2-mode ----------------------------------------------------------
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; whitespace-cleanup-mode -------------------------------------------
+
+(global-whitespace-cleanup-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
