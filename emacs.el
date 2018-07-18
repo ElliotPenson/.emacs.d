@@ -54,9 +54,10 @@
 (defun increment-number-at-point ()
   (interactive)
   (skip-chars-backward "0123456789")
-  (or (looking-at "[0123456789]+")
-      (error "No number at point"))
-  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+  (if (looking-at "[0123456789]+")
+      (let ((number-at-point (string-to-number (match-string 0))))
+        (replace-match (number-to-string (1+ number-at-point))))
+    (error "No number at point")))
 
 (push (cons "\\.cl$" 'lisp-mode)
       auto-mode-alist)
