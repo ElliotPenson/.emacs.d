@@ -36,10 +36,11 @@
     web-mode
     whitespace-cleanup-mode
     ;; environments
-    slime
     cider
-    paredit
     flycheck
+    paredit
+    restclient
+    slime
     ;; movement
     avy))
 
