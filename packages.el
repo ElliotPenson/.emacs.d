@@ -95,9 +95,9 @@
 
 ;; YASnippet  --------------------------------------------------------
 
-(add-to-list 'load-path
-              "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
+
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
 ;; Spell Checking  ---------------------------------------------------
