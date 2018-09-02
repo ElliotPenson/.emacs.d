@@ -7,6 +7,7 @@
 ;; MELPA  ----------------------------------------------------------
 
 (require 'package)
+(package-initialize)
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -37,6 +38,7 @@
     whitespace-cleanup-mode
     ;; environments
     cider
+    elpy
     flycheck
     paredit
     restclient
@@ -119,17 +121,16 @@
 
 (global-set-key (kbd "<f8>") 'ispell-word)
 
-;; Python ------------------------------------------------------------
+;; Python/Elpy -------------------------------------------------------
 
 (require 'python-mode)
 
 (exec-path-from-shell-initialize)
 
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
-(setq py-force-py-shell-name-p t)
+;; Be sure to install required packages first!
+;;     > pip install jedi flake8 autopep8 yapf
 
-(setq py-keep-windows-configuration t) ; don't split windows
+(elpy-enable)
 
 ;; SLIME -------------------------------------------------------------
 
