@@ -30,6 +30,7 @@
     clojure-mode
     go-mode
     js2-mode
+    json-mode
     markdown-mode
     python-mode
     scss-mode
