@@ -45,7 +45,9 @@
     restclient
     slime
     ;; movement
-    avy))
+    avy
+    ;; themes
+    doom-themes))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
