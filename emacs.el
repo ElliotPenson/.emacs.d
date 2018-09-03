@@ -4,6 +4,8 @@
 ;;
 ;;; Code:
 
+(package-initialize)
+
 ;; Interface ---------------------------------------------------------
 
 (load-theme 'doom-one t)
