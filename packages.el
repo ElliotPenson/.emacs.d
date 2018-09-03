@@ -33,6 +33,7 @@
     json-mode
     markdown-mode
     python-mode
+    rjsx-mode
     scss-mode
     swift-mode
     web-mode
