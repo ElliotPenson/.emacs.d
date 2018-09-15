@@ -9,8 +9,8 @@
 (require 'package)
 (package-initialize)
 
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -23,6 +23,7 @@
   '(better-defaults
     projectile
     exec-path-from-shell
+    org-plus-contrib
     ox-twbs
     yasnippet
     spaceline
@@ -54,10 +55,10 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; org-mode  ---------------------------------------------------------
+;; Org mode  ---------------------------------------------------------
 
 (require 'org)
-
+(require 'org-drill)
 (require 'ob-clojure)
 
 (define-key global-map "\C-cl" 'org-store-link)
