@@ -70,14 +70,25 @@
 
 (add-hook 'org-mode-hook 'turn-on-auto-fill) ; word wrap
 
+(require 'ox-twbs)
+
+(require 'ox-publish)
 (setq org-publish-project-alist
-      '(("org"
+      '(("org-notes"
          :base-directory "~/org/"
-         :base-extension "../"
+         :base-extension "org"
          :publishing-directory "~/org/public_html/"
          :publishing-function org-twbs-publish-to-html
+         :recursive t
          :with-headline-numbers nil
-         :with-sub-superscript nil)))
+         :with-sub-superscript nil)
+        ("org-static"
+         :base-direcotry "~/org/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+         :publishing-directory "~/org/public_html/"
+         :recursive t
+         :publishing-function org-publish-attachment)
+        ("org" :components ("org-notes" "org-static"))))
 
 (defun my-org-publish-buffer ()
   "Export the current buffer's file and open in browser. Function taken from
