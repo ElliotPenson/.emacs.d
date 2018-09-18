@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: noun
+# key: noun
+# --
+** Noun                                                               :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+
+*** Word
+
+    $1
+
+*** Definition
+
+    $0
