@@ -83,11 +83,11 @@
          :with-headline-numbers nil
          :with-sub-superscript nil)
         ("org-static"
-         :base-direcotry "~/org/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+         :base-directory "~/org/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|svg\\|pdf"
          :publishing-directory "~/org/public_html/"
-         :recursive t
-         :publishing-function org-publish-attachment)
+         :publishing-function org-publish-attachment
+         :recursive t)
         ("org" :components ("org-notes" "org-static"))))
 
 (defun my-org-publish-buffer ()
