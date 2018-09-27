@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Emacs
+*~
+\#*\#
+*.elc
+auto-save-list
+.org-id-locations
+eshell/history
+eshell/lastdir
+elpa
