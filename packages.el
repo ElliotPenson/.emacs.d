@@ -111,7 +111,7 @@
             (local-set-key (kbd "s-\\")
                            'my-org-publish-buffer)))
 
-(setq org-drill-learn-fraction 0.4)
+(setq org-drill-learn-fraction 0.25)
 
 ;; YASnippet  --------------------------------------------------------
 
