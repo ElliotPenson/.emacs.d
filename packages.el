@@ -34,7 +34,8 @@
   :ensure t)
 
 (use-package cider
-  :ensure t)
+  :ensure t
+  :commands (cider cider-connect cider-jack-in))
 
 (use-package clojure-mode
   :ensure t
@@ -46,9 +47,8 @@
   (load-theme 'doom-one t))
 
 (use-package elpy
-  :ensure python-mode
-  :init
-  (exec-path-from-shell-initialize)
+  :ensure t
+  :defer 2
   :config
   ;; Be sure to install required packages first!
   ;;     > pip install jedi flake8 autopep8 yap
@@ -61,7 +61,8 @@
   (setq esup-user-init-file "~/.emacs.d/emacs.el"))
 
 (use-package exec-path-from-shell
-  :ensure t)
+  :ensure t
+  :config (exec-path-from-shell-initialize))
 
 (use-package flycheck
   :ensure t
@@ -114,6 +115,7 @@
 
 (use-package ox-twbs
   :ensure t
+  :defer t
   :config
   (require 'ox-publish))
 
