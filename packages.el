@@ -142,7 +142,10 @@
             #'override-slime-repl-bindings-with-paredit))
 
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :bind-keymap ("s-p" . projectile-command-map)
+  :config
+  (projectile-mode +1))
 
 (use-package python-mode
   :ensure t
