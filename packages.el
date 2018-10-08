@@ -54,6 +54,12 @@
   ;;     > pip install jedi flake8 autopep8 yap
   (elpy-enable))
 
+(use-package esup
+  :ensure t
+  :defer t
+  :config
+  (setq esup-user-init-file "~/.emacs.d/emacs.el"))
+
 (use-package exec-path-from-shell
   :ensure t)
 
