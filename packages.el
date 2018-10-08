@@ -61,6 +61,10 @@
   :ensure t
   :config (exec-path-from-shell-initialize))
 
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . 'er/expand-region))
+
 (use-package flycheck
   :ensure t
   :config
