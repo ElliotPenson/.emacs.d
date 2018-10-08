@@ -8,8 +8,6 @@
 
 ;; Interface ---------------------------------------------------------
 
-(load-theme 'doom-one t)
-
 ;; Display the current column
 (setq column-number-mode t)
 
@@ -87,6 +85,8 @@
 ;; Other Configuration Files -----------------------------------------
 
 (load "~/.emacs.d/packages.el")
+(load "~/.emacs.d/spell-checking.el")
+(load "~/.emacs.d/org-mode.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; emacs.el ends here

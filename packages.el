@@ -1,10 +1,11 @@
 ;;; packages.el --- Emacs package configuration
-;;
 ;; Author: Elliot Penson
 ;;
+;;; Commentary:
+;; Emacs package configuration
+;;
+;;
 ;;; Code:
-
-;; MELPA  ----------------------------------------------------------
 
 (require 'package)
 (package-initialize)
@@ -12,228 +13,175 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives
-               '("gnu" . "http://elpa.gnu.org/packages/")))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(package-initialize)
+(eval-when-compile
+  (require 'use-package))
 
-(defvar my-packages
-  '(better-defaults
-    projectile
-    exec-path-from-shell
-    org-plus-contrib
-    ox-twbs
-    yasnippet
-    spaceline
-    ;; editor modes
-    clojure-mode
-    go-mode
-    js2-mode
-    json-mode
-    markdown-mode
-    python-mode
-    rjsx-mode
-    scss-mode
-    swift-mode
-    web-mode
-    whitespace-cleanup-mode
-    ;; environments
-    cider
-    elpy
-    flycheck
-    paredit
-    restclient
-    slime
-    ;; movement
-    avy
-    ;; themes
-    doom-themes))
+(use-package avy
+  :ensure t
+  :bind (("C-'" . 'avy-goto-char)
+         ("C-:" . 'avy-goto-char-2))
+  :config
+  ;; Unset conflicting binding in Org mode
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (local-unset-key (kbd "C-'")))))
 
-(dolist (package my-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
+(use-package better-defaults
+  :ensure t)
 
-;; Org mode  ---------------------------------------------------------
+(use-package cider
+  :ensure t)
 
-(require 'org)
-(require 'org-drill)
-(require 'ob-clojure)
+(use-package clojure-mode
+  :ensure t
+  :defer t)
 
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-one t))
 
-(setq org-log-done t)
+(use-package elpy
+  :ensure python-mode
+  :init
+  (exec-path-from-shell-initialize)
+  :config
+  ;; Be sure to install required packages first!
+  ;;     > pip install jedi flake8 autopep8 yap
+  (elpy-enable))
 
-(setq org-src-fontify-natively t) ; turn on syntax highlighting
+(use-package exec-path-from-shell
+  :ensure t)
 
-(add-hook 'org-mode-hook 'turn-on-auto-fill) ; word wrap
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
-(require 'ox-twbs)
+(use-package go-mode
+  :ensure t
+  :defer t
+  :config
+  (let*
+      ((go-path "~/go/")
+       (goflymake-package "github.com/dougm/goflymake")
+       (goflymake-path (concat go-path "src/" goflymake-package)))
+    (if (file-directory-p goflymake-path)
+        (add-to-list 'load-path goflymake-path)
+      (error (format "goflymake is not installed. Please run `go get -u %s`."
+                     goflymake-package))))
+  (require 'go-flymake)
+  (require 'go-flycheck))
 
-(require 'ox-publish)
-(setq org-publish-project-alist
-      '(("org-notes"
-         :base-directory "~/org/"
-         :base-extension "org"
-         :publishing-directory "~/org/public_html/"
-         :publishing-function org-twbs-publish-to-html
-         :recursive t
-         :with-headline-numbers nil
-         :with-sub-superscript nil)
-        ("org-static"
-         :base-directory "~/org/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|svg\\|pdf"
-         :publishing-directory "~/org/public_html/"
-         :publishing-function org-publish-attachment
-         :recursive t)
-        ("org" :components ("org-notes" "org-static"))))
+(use-package js2-mode
+  :ensure t
+  :defer t
+  :mode "\\.js$"
+  :commands js2-mode)
 
-(defun my-org-publish-buffer ()
-  "Export the current buffer's file and open in browser. Function taken from
-   the ox-twbs manual (https://github.com/mars mining/ox-twbs)."
-  (interactive)
-  (save-buffer)
-  (save-excursion (org-publish-current-file))
-  (let* ((proj (org-publish-get-project-from-filename buffer-file-name))
-         (proj-plist (cdr proj))
-         (rel (file-relative-name buffer-file-name
-                                  (plist-get proj-plist :base-directory)))
-         (dest (plist-get proj-plist :publishing-directory)))
-    (browse-url (concat "file://"
-                        (file-name-as-directory (expand-file-name dest))
-                        (file-name-sans-extension rel)
-                        ".html"))))
+(use-package json-mode
+  :ensure t
+  :defer t
+  :commands json-mode)
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (local-set-key (kbd "s-\\")
-                           'my-org-publish-buffer)))
+(use-package markdown-mode
+  :ensure t
+  :defer t)
 
-(setq org-drill-learn-fraction 0.25)
+(use-package org
+  :ensure org-plus-contrib
+  :defer 1
+  :bind (("\C-cl" . 'org-store-link)
+         ("\C-ca" . 'org-agenda))
+  :config
+  (require 'org-drill)
+  (require 'ob-clojure)
+  (setq org-log-done t)
+  ;; Syntax highlighting.
+  (setq org-src-fontify-natively t)
+  ;; Word wrap.
+  (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
-;; YASnippet  --------------------------------------------------------
+(use-package ox-twbs
+  :ensure t
+  :config
+  (require 'ox-publish))
 
-(require 'yasnippet)
+(use-package paredit
+  :ensure t
+  :config
+  (autoload 'enable-paredit-mode "paredit" t)
+  (dolist (hook '(emacs-lisp-mode-hook
+                  eval-expression-minibuffer-setup-hook
+                  lisp-mode-hook
+                  lisp-interaction-mode-hook
+                  scheme-mode-hook))
+    (add-hook hook #'enable-paredit-mode))
 
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-(yas-global-mode 1)
+  ;; Paredit in SLIME
+  (add-hook 'slime-repl-mode-hook
+            (lambda () (paredit-mode +1)))
+  (defun override-slime-repl-bindings-with-paredit ()
+    (define-key slime-repl-mode-map
+      (read-kbd-macro paredit-backward-delete-key) nil))
+  (add-hook 'slime-repl-mode-hook
+            #'override-slime-repl-bindings-with-paredit))
 
-;; Spell Checking  ---------------------------------------------------
+(use-package projectile
+  :ensure t)
 
-(setq ispell-program-name
-      "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+(use-package python-mode
+  :ensure t
+  :defer t)
 
-(dolist (hook '(text-mode-hook
-                org-mode-hook))
-  ;; Spell check entire file
-  (add-hook hook (lambda () (flyspell-mode 1))))
+(use-package restclient
+  :ensure t
+  :defer t)
 
-(dolist (hook '(emacs-lisp-mode-hook
-                inferior-lisp-mode-hook
-                lisp-mode-hook
-                python-mode-hook))
-  ;; Spell check comments and strings
-  (add-hook hook (lambda () (flyspell-prog-mode))))
+(use-package rjsx-mode
+  :ensure t
+  :defer t)
 
-(global-set-key (kbd "<f8>") 'ispell-word)
+(use-package scss-mode
+  :ensure t
+  :defer t)
 
-;; Python/Elpy -------------------------------------------------------
+(use-package slime
+  :ensure t
+  :defer t
+  :config
+  (setq inferior-lisp-program
+        (cond ((file-exists-p "/usr/bin/sbcl")
+               "/usr/bin/sbcl")
+              ((file-exists-p "/usr/local/bin/sbcl")
+               "/usr/local/bin/sbcl")
+              (t (error "Cannot find SBCL!"))))
+  (setq slime-contribs '(slime-fancy))
+  (setq slime-net-coding-system 'utf-8-unix))
 
-(require 'python-mode)
+(use-package swift-mode
+  :ensure t
+  :defer t)
 
-(exec-path-from-shell-initialize)
+(use-package web-mode
+  :ensure t
+  :defer t
+  :mode "\\.html?\\'")
 
-;; Be sure to install required packages first!
-;;     > pip install jedi flake8 autopep8 yapf
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :config
+  (global-whitespace-cleanup-mode))
 
-(elpy-enable)
-
-;; SLIME -------------------------------------------------------------
-
-(setq inferior-lisp-program
-      (cond ((file-exists-p "/usr/bin/sbcl")
-             "/usr/bin/sbcl")
-            ((file-exists-p "/usr/local/bin/sbcl")
-             "/usr/local/bin/sbcl")
-            (t (error "Cannot find SBCL!"))))
-
-(setq slime-contribs '(slime-fancy))
-
-(setq slime-net-coding-system 'utf-8-unix)
-
-;; Paredit -----------------------------------------------------------
-
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural-editing of Lisp code."
-  t)
-
-(dolist (hook '(emacs-lisp-mode-hook
-                eval-expression-minibuffer-setup-hook
-                lisp-mode-hook
-                lisp-interaction-mode-hook
-                scheme-mode-hook))
-  (add-hook hook #'enable-paredit-mode))
-
-;; Paredit in SLIME
-
-(add-hook 'slime-repl-mode-hook
-          (lambda () (paredit-mode +1)))
-
-(defun override-slime-repl-bindings-with-paredit ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
-
-(add-hook 'slime-repl-mode-hook
-          #'override-slime-repl-bindings-with-paredit)
-
-;; Flycheck ----------------------------------------------------------
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; Avy ---------------------------------------------------------------
-
-(global-set-key (kbd "C-'") 'avy-goto-char)
-
-;; Unset conflicting binding in Org mode
-(add-hook 'org-mode-hook
-          (lambda ()
-            (local-unset-key (kbd "C-'"))))
-
-(global-set-key (kbd "C-:") 'avy-goto-char-2)
-
-;; Go ----------------------------------------------------------------
-
-(let*
-    ((go-path "~/go/")
-     (goflymake-package "github.com/dougm/goflymake")
-     (goflymake-path (concat go-path "src/" goflymake-package)))
-  (if (file-directory-p goflymake-path)
-      (add-to-list 'load-path goflymake-path)
-    (error (format "goflymake is not installed. Please run `go get -u %s`."
-                   goflymake-package))))
-
-(require 'go-flymake)
-(require 'go-flycheck)
-
-;; web-mode ----------------------------------------------------------
-
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-;; spaceline ---------------------------------------------------------
-
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-
-;; js2-mode ----------------------------------------------------------
-
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-;; whitespace-cleanup-mode -------------------------------------------
-
-(global-whitespace-cleanup-mode)
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (yas-global-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; packages.el ends here
