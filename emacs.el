@@ -35,6 +35,8 @@
        (setq mac-option-modifier 'super))
       (t (setq w32-lwindow-modifier 'meta)))
 
+(global-set-key (kbd "RET") 'newline-and-indent)
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
