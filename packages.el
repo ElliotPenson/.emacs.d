@@ -30,9 +30,6 @@
             (lambda ()
               (local-unset-key (kbd "C-'")))))
 
-(use-package better-defaults
-  :ensure t)
-
 (use-package cider
   :ensure t
   :commands (cider cider-connect cider-jack-in))
@@ -83,6 +80,11 @@
                      goflymake-package))))
   (require 'go-flymake)
   (require 'go-flycheck))
+
+(use-package ido
+  :config
+  (ido-mode t)
+  (setq ido-enable-flex-matching t))
 
 (use-package js2-mode
   :ensure t
@@ -154,6 +156,12 @@
   :ensure t
   :defer t)
 
+(use-package saveplace
+  :ensure nil
+  :config
+  (setq-default save-place t)
+  (setq save-place-file (concat user-emacs-directory "places")))
+
 (use-package scss-mode
   :ensure t
   :defer t)
@@ -174,6 +182,11 @@
 (use-package swift-mode
   :ensure t
   :defer t)
+
+(use-package uniquify
+  :ensure nil
+  :config
+  (setq uniquify-buffer-name-style 'forward))
 
 (use-package web-mode
   :ensure t

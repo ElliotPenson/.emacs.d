@@ -6,13 +6,7 @@
 
 (package-initialize)
 
-;; Interface ---------------------------------------------------------
-
-;; Display the current column
-(setq column-number-mode t)
-
-(setq inhibit-startup-message t)
-(fset 'yes-or-no-p 'y-or-n-p)
+;;; Interface --------------------------------------------------------
 
 (when (eq system-type 'windows-nt)
   (set-face-attribute 'default nil :font "Fixedsys")
@@ -22,20 +16,44 @@
 (add-to-list 'default-frame-alist '(height . 75))
 (add-to-list 'default-frame-alist '(width . 100))
 
-(setq confirm-kill-emacs 'y-or-n-p)
+(setq column-number-mode t
+      confirm-kill-emacs 'y-or-n-p
+      inhibit-startup-message t
+      visible-bell nil)
 
-(setq visible-bell nil)
+(fset 'yes-or-no-p 'y-or-n-p)
 
-;; Keys/Navigation  --------------------------------------------------
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
+
+;;; Keys/Navigation  -------------------------------------------------
 
 (cond ((eq system-type 'darwin)
        (setq mac-command-modifier 'meta)
        (setq mac-option-modifier 'super))
       (t (setq w32-lwindow-modifier 'meta)))
 
-;; Editing -----------------------------------------------------------
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+;; Highlight matching parentheses.
+(show-paren-mode 1)
+
+;;; Editing ----------------------------------------------------------
 
 (setq-default fill-column 80)
+(setq-default indent-tabs-mode nil)
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                               "backups")))
+      load-prefer-newer t
+      mouse-yank-at-point t
+      require-final-newline t)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
@@ -43,6 +61,12 @@
                 (lambda ()
                   (interactive)
                   (join-line -1)))
+
+(autoload 'zap-up-to-char "misc"
+  "Kill up to the given CHAR." t)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
 
 (defun increment-number-at-point ()
   (interactive)
@@ -75,14 +99,14 @@
 (push (cons "\\.cl$" 'lisp-mode)
       auto-mode-alist)
 
-;; Misc Settings -----------------------------------------------------
+;;; Misc Settings ----------------------------------------------------
 
 (setq user-full-name "Elliot Penson"
       user-mail-address "elliotpenson@gmail.com")
 
 (global-set-key (kbd "C-x g") 'webjump)
 
-;; Other Configuration Files -----------------------------------------
+;;; Other Configuration Files ----------------------------------------
 
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/spell-checking.el")
