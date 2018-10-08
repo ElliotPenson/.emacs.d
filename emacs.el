@@ -88,5 +88,8 @@
 (load "~/.emacs.d/spell-checking.el")
 (load "~/.emacs.d/org-mode.el")
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; emacs.el ends here
