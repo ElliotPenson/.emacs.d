@@ -38,6 +38,9 @@
   :ensure t
   :defer t)
 
+(use-package diminish
+  :ensure t)
+
 (use-package doom-themes
   :ensure t
   :config
@@ -147,6 +150,7 @@
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :bind-keymap ("s-p" . projectile-command-map)
   :config
   (projectile-mode +1))
@@ -207,6 +211,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (yas-global-mode 1))
