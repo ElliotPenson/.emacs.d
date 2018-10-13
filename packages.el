@@ -88,10 +88,21 @@
   (require 'go-flymake)
   (require 'go-flycheck))
 
-(use-package ido
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :bind (("C-x b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-x f" . helm-recentf)
+         ("M-x" . helm-M-x)
+         ("M-y" . helm-show-kill-ring))
   :config
-  (ido-mode t)
-  (setq ido-enable-flex-matching t))
+  (helm-mode 1))
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
 
 (use-package js2-mode
   :ensure t
