@@ -121,7 +121,7 @@
 
 (use-package org
   :ensure org-plus-contrib
-  :defer 1
+  :commands org-publish
   :bind (("\C-cl" . 'org-store-link)
          ("\C-ca" . 'org-agenda))
   :config
