@@ -6,7 +6,16 @@
 \#*\#
 *.elc
 auto-save-list
+eshell/
+history
+url/
+
+# Emacs Packages
 .org-id-locations
-eshell/history
-eshell/lastdir
-elpa
+.python-environments
+ac-comphist.dat
+elpa/
+projectile-bookmarks.eld
+speed-type/
+recentf
+tramp
