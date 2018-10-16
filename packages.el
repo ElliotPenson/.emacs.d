@@ -220,6 +220,10 @@
   :config
   (global-whitespace-cleanup-mode))
 
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
