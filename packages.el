@@ -41,6 +41,14 @@
 (use-package diminish
   :ensure t)
 
+(use-package docker-compose-mode
+  :ensure t
+  :defer t)
+
+(use-package dockerfile-mode
+  :ensure t
+  :defer t)
+
 (use-package doom-themes
   :ensure t
   :config
