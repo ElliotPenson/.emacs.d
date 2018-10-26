@@ -167,6 +167,13 @@
   (add-hook 'slime-repl-mode-hook
             #'override-slime-repl-bindings-with-paredit))
 
+(use-package pip-requirements
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'pip-requirements-mode-hook
+            #'pip-requirements-auto-complete-setup))
+
 (use-package projectile
   :ensure t
   :diminish projectile-mode
