@@ -117,7 +117,8 @@
   ;;     > npm install -g indium
   :ensure t
   :diminish indium-interaction-mode
-  :bind ("C-c C-c" . 'indium-eval-region)
+  :bind (("C-c C-z" . 'indium-launch)
+         ("C-c C-c" . 'indium-eval-region))
   :config
   (add-hook 'js2-mode-hook #'indium-interaction-mode))
 
