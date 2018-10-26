@@ -112,6 +112,15 @@
   :config
   (helm-projectile-on))
 
+(use-package indium
+  ;; Be sure to also install the Indium server.
+  ;;     > npm install -g indium
+  :ensure t
+  :diminish indium-interaction-mode
+  :bind ("C-c C-c" . 'indium-eval-region)
+  :config
+  (add-hook 'js2-mode-hook #'indium-interaction-mode))
+
 (use-package js2-mode
   :ensure t
   :defer t
