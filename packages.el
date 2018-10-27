@@ -105,6 +105,7 @@
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring))
   :config
+  (require 'helm-config)
   (helm-mode 1))
 
 (use-package helm-projectile
@@ -116,6 +117,7 @@
   ;; Be sure to also install the Indium server.
   ;;     > npm install -g indium
   :ensure t
+  :defer t
   :diminish indium-interaction-mode
   :bind (("C-c C-z" . 'indium-launch)
          ("C-c C-c" . 'indium-eval-region))
