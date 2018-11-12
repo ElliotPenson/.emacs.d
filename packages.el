@@ -179,6 +179,9 @@
   (add-hook 'slime-repl-mode-hook
             #'override-slime-repl-bindings-with-paredit))
 
+(use-package parrot
+  :ensure t)
+
 (use-package pip-requirements
   :ensure t
   :defer t
