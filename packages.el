@@ -54,6 +54,13 @@
   :config
   (load-theme 'doom-one t))
 
+(use-package dumb-jump
+  :ensure t
+  :config
+  ;; Be sure to install ag first!
+  ;;     > brew install the_silver_searcher
+  (dumb-jump-mode))
+
 (use-package elpy
   :ensure t
   :defer 2
