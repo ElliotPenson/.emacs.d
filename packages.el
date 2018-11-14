@@ -67,7 +67,8 @@
   :config
   ;; Be sure to install required packages first!
   ;;     > pip install jedi flake8 autopep8 yap
-  (elpy-enable))
+  (elpy-enable)
+  (elpy-set-test-runner 'elpy-test-pytest-runner))
 
 (use-package esup
   :ensure t
