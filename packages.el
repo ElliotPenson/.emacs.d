@@ -50,6 +50,13 @@
   :ensure t
   :defer t)
 
+(use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode)
+      :config
+      (setq doom-modeline-python-executable "python3")
+      (setq doom-modeline-icon nil))
+
 (use-package doom-themes
   :ensure t
   :config
