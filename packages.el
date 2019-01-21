@@ -25,6 +25,7 @@
   :bind (("C-'" . 'avy-goto-char)
          ("C-:" . 'avy-goto-char-2))
   :config
+  (setq avy-all-windows nil)
   ;; Unset conflicting binding in Org mode
   (add-hook 'org-mode-hook
             (lambda ()
