@@ -112,6 +112,10 @@
   (require 'go-flymake)
   (require 'go-flycheck))
 
+(use-package haskell-mode
+  :ensure t
+  :defer t)
+
 (use-package helm
   :ensure t
   :diminish helm-mode
