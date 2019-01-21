@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: title
-# key: title
+# key: t
 # --
 #+TITLE: $1
 #+AUTHOR: Elliot Penson
