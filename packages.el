@@ -255,6 +255,10 @@
   :ensure t
   :defer t)
 
+(use-package typescript-mode
+  :ensure t
+  :defer t)
+
 (use-package uniquify
   :ensure nil
   :config
@@ -263,7 +267,7 @@
 (use-package web-mode
   :ensure t
   :defer t
-  :mode "\\.html?\\'")
+  :mode (".html" ".jsx" ".tsx"))
 
 (use-package whitespace-cleanup-mode
   :ensure t
