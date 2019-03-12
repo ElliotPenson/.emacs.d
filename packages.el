@@ -212,7 +212,7 @@
 (use-package projectile
   :ensure t
   :diminish projectile-mode
-  :bind-keymap ("s-p" . projectile-command-map)
+  :bind-keymap ("C-c p" . projectile-command-map)
   :config
   (projectile-mode +1))
 
