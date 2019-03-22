@@ -274,7 +274,10 @@
 (use-package web-mode
   :ensure t
   :defer t
-  :mode "\\.html?\\'")
+  :mode ("\\.html?\\'" "\\.css\\'")
+  :config
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2))
 
 (use-package whitespace-cleanup-mode
   :ensure t
