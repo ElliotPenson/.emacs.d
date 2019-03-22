@@ -86,7 +86,8 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :config (exec-path-from-shell-initialize))
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package expand-region
   :ensure t
@@ -209,11 +210,14 @@
             #'pip-requirements-auto-complete-setup))
 
 (use-package prettier-js
+  ;; Be sure to install prettier!
+  ;;   > npm install --global prettier
   :ensure t
   :init
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'css-mode-hook 'prettier-js-mode)
+  (add-hook 'typescript-mode-hook 'prettier-js-mode)
   :config
   (setq prettier-js-args '("--single-quote")))
 
@@ -267,9 +271,26 @@
   :ensure t
   :defer t)
 
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (tide-hl-identifier-mode +1))
+
+(use-package tide
+  :ensure t
+  :config
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode)))))
+
 (use-package typescript-mode
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (setq typescript-indent-level 2))
 
 (use-package uniquify
   :ensure nil
@@ -279,10 +300,11 @@
 (use-package web-mode
   :ensure t
   :defer t
-  :mode ("\\.html?\\'" "\\.css\\'")
+  :mode ("\\.html?\\'" "\\.css\\'" "\\.tsx\\'")
   :config
   (setq web-mode-css-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
 
 (use-package whitespace-cleanup-mode
   :ensure t
