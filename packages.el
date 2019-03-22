@@ -209,6 +209,15 @@
   (add-hook 'pip-requirements-mode-hook
             #'pip-requirements-auto-complete-setup))
 
+(use-package prettier-js
+  :ensure t
+  :init
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
+  (add-hook 'css-mode-hook 'prettier-js-mode)
+  :config
+  (setq prettier-js-args '("--single-quote")))
+
 (use-package projectile
   :ensure t
   :diminish projectile-mode
