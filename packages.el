@@ -147,7 +147,6 @@
 (use-package js2-mode
   :ensure t
   :defer t
-  :mode "\\.js$"
   :commands js2-mode)
 
 (use-package json-mode
@@ -235,7 +234,10 @@
 
 (use-package rjsx-mode
   :ensure t
-  :defer t)
+  :defer t
+  :mode ("\\.js\\'" "\\.jsx\\'")
+  :config
+  (setq js-indent-level 2))
 
 (use-package saveplace
   :ensure nil
