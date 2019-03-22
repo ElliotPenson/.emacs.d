@@ -237,7 +237,8 @@
   :defer t
   :mode ("\\.js\\'" "\\.jsx\\'")
   :config
-  (setq js-indent-level 2))
+  (setq js-indent-level 2)
+  (yas-activate-extra-mode 'js2-mode))
 
 (use-package saveplace
   :ensure nil
