@@ -155,6 +155,10 @@
   :defer t
   :commands json-mode)
 
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
+
 (use-package markdown-mode
   :ensure t
   :defer t)
