@@ -159,6 +159,10 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
+(use-package magit-todos
+  :ensure t
+  :hook (magit-mode . magit-todos-mode))
+
 (use-package markdown-mode
   :ensure t
   :defer t)
