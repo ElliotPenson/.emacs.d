@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: main
+# key: main
+# --
+package main
+
+import $1
+
+func main() {
+        $0
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: if
+# key: i
+# --
+if $1 {
+        $0
+}
