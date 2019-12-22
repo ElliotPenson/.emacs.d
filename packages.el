@@ -111,7 +111,11 @@
       (error (format "goflymake is not installed. Please run `go get -u %s`."
                      goflymake-package))))
   (require 'go-flymake)
-  (require 'go-flycheck))
+  (require 'go-flycheck)
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode 1)
+              (setq tab-width 4))))
 
 (use-package haskell-mode
   :ensure t
