@@ -230,9 +230,7 @@
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'css-mode-hook 'prettier-js-mode)
-  (add-hook 'typescript-mode-hook 'prettier-js-mode)
-  :config
-  (setq prettier-js-args '("--single-quote")))
+  (add-hook 'typescript-mode-hook 'prettier-js-mode))
 
 (use-package projectile
   :ensure t
