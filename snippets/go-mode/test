@@ -1,7 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: if
-# key: i
+# name: test
+# key: test
 # --
-if $1 {
+func Test$1() {
 	$0
 }

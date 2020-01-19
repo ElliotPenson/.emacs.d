@@ -1,7 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: if
-# key: i
+# name: const
+# key: c
 # --
-if $1 {
-	$0
-}
+const $1 = $0
