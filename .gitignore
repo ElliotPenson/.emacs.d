@@ -15,6 +15,7 @@ url/
 .python-environments
 ac-comphist.dat
 elpa/
+elpy/
 projectile-bookmarks.eld
 speed-type/
 recentf
