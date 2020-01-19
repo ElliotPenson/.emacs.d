@@ -98,26 +98,6 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
-(use-package go-mode
-  :ensure t
-  :defer t
-  :config
-  (let*
-      ((go-path "~/go/")
-       (goflymake-package "github.com/dougm/goflymake")
-       (goflymake-path (concat go-path "src/" goflymake-package)))
-    (if (file-directory-p goflymake-path)
-        (add-to-list 'load-path goflymake-path)
-      (error (format "goflymake is not installed. Please run `go get -u %s`."
-                     goflymake-package))))
-  (require 'go-flymake)
-  (require 'go-flycheck)
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'gofmt-before-save)
-              (setq indent-tabs-mode 1)
-              (setq tab-width 4))))
-
 (use-package haskell-mode
   :ensure t
   :defer t)

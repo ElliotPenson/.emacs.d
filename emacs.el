@@ -113,6 +113,7 @@
 
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/spell-checking.el")
+(load "~/.emacs.d/go-mode.el")
 (load "~/.emacs.d/org-mode.el")
 
 (setq custom-file "~/.emacs.d/custom.el")
