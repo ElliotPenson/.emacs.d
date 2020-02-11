@@ -20,6 +20,9 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package ascii-art-to-unicode
+  :ensure t)
+
 (use-package avy
   :ensure t
   :bind (("C-'" . 'avy-goto-char)
