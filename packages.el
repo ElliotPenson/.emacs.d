@@ -265,6 +265,10 @@
   :ensure t
   :defer t)
 
+(use-package terraform-mode
+  :ensure t
+  :defer t)
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
