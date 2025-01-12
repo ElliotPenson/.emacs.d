@@ -257,12 +257,7 @@
   :ensure t
   :defer t
   :config
-  (setq inferior-lisp-program
-        (cond ((file-exists-p "/usr/bin/sbcl")
-               "/usr/bin/sbcl")
-              ((file-exists-p "/usr/local/bin/sbcl")
-               "/usr/local/bin/sbcl")
-              (t (error "Cannot find SBCL!"))))
+  (setq inferior-lisp-program "sbcl")
   (setq slime-contribs '(slime-fancy))
   (setq slime-net-coding-system 'utf-8-unix))
 
