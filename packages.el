@@ -87,6 +87,11 @@
   :config
   (setq esup-user-init-file "~/.emacs.d/emacs.el"))
 
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
+
 (use-package exec-path-from-shell
   :ensure t
   :config
